@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { GithubLogo, CaretRight } from '@phosphor-icons/react'
 
 const QQ_GROUP_URL = 'https://qm.qq.com/q/M2NJEm15uc'
+const GITHUB_REPO_URL = 'https://github.com/EpochMCDev/EpochMC_WebSite'
 
 export default function Footer() {
   useEffect(() => {
@@ -15,26 +18,59 @@ export default function Footer() {
   return (
     <footer className="border-t border-border bg-bg">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-x-2 gap-y-2 text-center flex-wrap text-xs text-muted font-medium">
-          <span>© 2026 Epoch MC 版权所有</span>
-          <span className="hidden sm:inline text-faint">/</span>
-          <a
-            href={QQ_GROUP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-fg"
-          >
-            QQ 群 1043737743
-          </a>
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+          {/* Left: logo + copyright */}
+          <div className="flex items-center gap-3.5">
+            <img
+              src="/images/logo.png"
+              alt="Epoch MC"
+              className="h-10 w-auto object-contain"
+            />
+            <p className="text-sm font-semibold text-fg tracking-tight">
+              © 2026 Epoch MC
+            </p>
+          </div>
+
+          {/* Right: version info + links */}
+          <div className="flex flex-col items-start sm:items-end gap-2.5 text-xs text-muted">
+            <p className="text-[11px] text-faint">
+              版本 {__VERSION__} · 构建于 {__BUILD_TIME__} (UTC+8) · {__BUILD_ENV__} 环境
+            </p>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+              <a
+                href={QQ_GROUP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium transition-colors hover:text-fg"
+              >
+                QQ 群 1043737743
+              </a>
+              <span className="text-faint">/</span>
+              <a
+                href={GITHUB_REPO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-semibold text-fg transition-colors hover:opacity-70"
+              >
+                <GithubLogo size={15} weight="fill" />
+                GitHub 开源仓库 · GNU GPL v3
+              </a>
+              <span className="text-faint">/</span>
+              <Link
+                to="/versions"
+                className="inline-flex items-center gap-1 font-semibold text-fg transition-colors hover:opacity-70"
+              >
+                更多详情
+                <CaretRight size={13} weight="bold" />
+              </Link>
+            </div>
+            {__USER_DEBUG__ && (
+              <p className="text-[11px] text-danger">
+                【测试版本】USER DEBUG 模式 · 构建者：{__BUILDER__}
+              </p>
+            )}
+          </div>
         </div>
-        <p className="mt-3 text-center text-[11px] text-faint">
-          版本 {__VERSION__} · 构建于 {__BUILD_TIME__} (UTC+8) · {__BUILD_ENV__} 环境
-        </p>
-        {__USER_DEBUG__ && (
-          <p className="mt-2 text-center text-[11px] text-danger">
-            【测试版本】USER DEBUG 模式 · 构建者：{__BUILDER__}
-          </p>
-        )}
       </div>
     </footer>
   )

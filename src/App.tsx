@@ -8,6 +8,7 @@ import Join from './pages/Join'
 import Event from './pages/Event'
 import SatelliteMap from './pages/SatelliteMap'
 import Stock from './pages/Stock'
+import Versions from './pages/Versions'
 
 function ScrollToTop() {
   const location = useLocation()
@@ -46,6 +47,7 @@ export default function App() {
             <Route path="/event" element={<Event />} />
             <Route path="/satellite" element={<SatelliteMap />} />
             <Route path="/stock" element={<Stock />} />
+            <Route path="/versions" element={<Versions />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
