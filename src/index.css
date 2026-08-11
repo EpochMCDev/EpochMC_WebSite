@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Explicitly scan the src tree so utilities are generated in dev mode too. */
+@source "../src/**/*.{ts,tsx,js,jsx}";
+
 :root {
   /* ysjf.com 设计系统：浅色极简 */
   --yy-bg: #FFFFFF;
