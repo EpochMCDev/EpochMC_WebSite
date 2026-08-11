@@ -115,28 +115,6 @@ export default function About() {
           </ScrollReveal>
         </div>
       </section>
-
-      {/* Data */}
-      <section className="bg-surface border-y border-border py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <ScrollReveal>
-            <SectionHead title="我们的数据" subtitle="DATA" />
-          </ScrollReveal>
-          <ScrollReveal delay={80}>
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-5">
-              {ABOUT_STATS.map(({ value, label }) => (
-                <div
-                  key={label}
-                  className="rounded-[10px] bg-bg border border-border px-6 py-8 text-center transition-shadow hover:shadow-[0_0_20px_0_rgba(0,0,0,0.07)]"
-                >
-                  <div className="text-3xl sm:text-4xl font-bold text-fg tracking-tight">{value}</div>
-                  <div className="mt-2 text-sm text-muted font-medium">{label}</div>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
     </>
   )
 }
