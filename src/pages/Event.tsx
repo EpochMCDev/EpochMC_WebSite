@@ -6,7 +6,7 @@ export default function Event() {
     <>
       <section className="bg-bg pt-32 sm:pt-36 pb-10 sm:pb-14">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
-          <p className="text-xs font-medium tracking-[0.18em] text-faint">ACTIVITY</p>
+          <p className="text-xs font-medium tracking-[0.18em] text-faint">EVENT</p>
           <h1 className="mt-3 text-3xl sm:text-4xl font-bold text-fg tracking-tight">
             活动与动态
           </h1>
