@@ -44,7 +44,7 @@ const SERVER_INFO = [
 
 const HARDWARE = [
   { icon: Cpu, label: '处理器', value: 'Intel i7-14700K' },
-  { icon: DeviceMobileCamera, label: '内存', value: '24GB' },
+  { icon: DeviceMobileCamera, label: '内存', value: '128GB' },
 ]
 
 const FAQS = [
