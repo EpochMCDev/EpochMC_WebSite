@@ -1,0 +1,29 @@
+{
+  "name": "epochmc-website",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "build:user": "cross-env VERSION=1.0.0 BUILDER=Admin BUILD_ENV=production vite build",
+    "build:userdebug": "cross-env VERSION=1.0.0 BUILDER=Admin BUILD_ENV=userdebug vite build --mode userdebug",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^5.1.4",
+    "cross-env": "^10.1.0",
+    "typescript": "^7.0.2",
+    "vite": "^7.2.4"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "@tailwindcss/vite": "^4.3.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.0",
+    "tailwindcss": "^4.3.1"
+  }
+}
