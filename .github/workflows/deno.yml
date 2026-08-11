@@ -1,0 +1,66 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main  
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  
+          cache: 'npm'      
+
+      - name: Install dependencies
+        run: npm i 
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: dist/
+
+      - name: Generate version
+        id: version
+        run: |
+          DATE=$(date +'%Y.%m.%d')
+          COMMIT_COUNT=$(git rev-list --count HEAD)
+          VERSION="${DATE}.${COMMIT_COUNT}"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Package build artifacts
+        run: |
+          cd dist
+          zip -r ../build-v${{ env.VERSION }}.zip .
+          cd ..
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: Release v${{ env.VERSION }}
+          body: ${{ github.event.head_commit.message }}
+          draft: false
+          prerelease: false
+          files: |
+            build-v${{ env.VERSION }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
