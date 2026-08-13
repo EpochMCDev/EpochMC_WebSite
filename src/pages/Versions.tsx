@@ -18,8 +18,8 @@ const BUILD_INFO = [
   { label: '构建时间', value: __BUILD_TIME__ },
   { label: '构建环境', value: __BUILD_ENV__ },
   { label: '总Commit次数', value: __COMMIT_COUNT__ },
-  { label: '框架', value: 'React + Vite [TypeScript]' },
-  { label: '工程师', value: '深水6 / 小白' },
+  { label: '框架', value: 'React & Vite' },
+  { label: '工程师', value: '深水6' },
 ]
 
 function formatDate(iso: string) {
