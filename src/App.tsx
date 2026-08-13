@@ -32,25 +32,34 @@ function NotFound() {
   )
 }
 
+function Shell() {
+  const location = useLocation()
+  const hideFooter = location.pathname === '/satellite' || location.pathname === '/stock'
+
+  return (
+    <div className="min-h-screen flex flex-col bg-bg">
+      <Navbar />
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/satellite" element={<SatelliteMap />} />
+          <Route path="/stock" element={<Stock />} />
+          <Route path="/versions" element={<Versions />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      {!hideFooter && <Footer />}
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col bg-bg">
-        <Navbar />
-        <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/satellite" element={<SatelliteMap />} />
-            <Route path="/stock" element={<Stock />} />
-            <Route path="/versions" element={<Versions />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <Shell />
     </BrowserRouter>
   )
 }
