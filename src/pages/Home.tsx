@@ -186,14 +186,14 @@ export default function Home() {
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/join"
-              className="inline-flex items-center gap-2 px-7 py-3 bg-white text-fg font-semibold text-sm border border-white hover:bg-transparent hover:text-white active:scale-[0.97] transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3 bg-white text-[#24252C] font-semibold text-sm border border-white hover:bg-transparent hover:text-white active:scale-[0.97] transition-all"
             >
               立即加入
               <ArrowRight size={16} weight="bold" />
             </Link>
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 px-7 py-3 text-white/90 font-medium text-sm border border-white/60 hover:bg-white hover:text-fg active:scale-[0.97] transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3 text-white/90 font-medium text-sm border border-white/60 hover:bg-white hover:text-[#24252C] active:scale-[0.97] transition-all"
             >
               了解更多
             </Link>
