@@ -144,7 +144,10 @@ export default function Home() {
   return (
     <>
       {/* ==================== Fullscreen banner ==================== */}
-      <section className="relative min-h-[100svh] flex flex-col overflow-hidden bg-fg">
+      <section
+        id="home-hero"
+        className="relative min-h-[100svh] flex flex-col overflow-hidden bg-fg"
+      >
         {HERO_BACKGROUNDS.map((bg, i) => (
           <div
             key={bg}
@@ -222,8 +225,6 @@ export default function Home() {
             <SectionHead
               title="最新动态"
               subtitle="UPDATES"
-              linkText="了解更多"
-              linkTo="/event"
             />
           </ScrollReveal>
 

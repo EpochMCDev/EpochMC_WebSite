@@ -5,7 +5,6 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import Join from './pages/Join'
-import Event from './pages/Event'
 import SatelliteMap from './pages/SatelliteMap'
 import Stock from './pages/Stock'
 import Versions from './pages/Versions'
@@ -44,7 +43,6 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/join" element={<Join />} />
-            <Route path="/event" element={<Event />} />
             <Route path="/satellite" element={<SatelliteMap />} />
             <Route path="/stock" element={<Stock />} />
             <Route path="/versions" element={<Versions />} />

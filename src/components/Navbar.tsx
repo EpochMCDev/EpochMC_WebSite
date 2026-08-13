@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { List, X, CaretRight } from '@phosphor-icons/react'
+import ThemeToggle from './ThemeToggle'
 
 const NAV_ITEMS = [
   { path: '/', label: '首页' },
   { path: '/about', label: '关于' },
   { path: '/join', label: '加入' },
-  { path: '/event', label: '活动' },
   { path: '/satellite', label: '卫星地图' },
   { path: '/stock', label: '国家股市' },
   { path: 'https://wiki.epochmc.cn/', label: '维基百科' },
 ]
 
 const QQ_GROUP_URL = 'https://qm.qq.com/q/M2NJEm15uc'
+const NAVBAR_HEIGHT = 64
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -20,11 +21,28 @@ export default function Navbar() {
   const location = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const updateScrolled = () => {
+      if (location.pathname !== '/') {
+        setScrolled(true)
+        return
+      }
+      const hero = document.getElementById('home-hero')
+      if (!hero) {
+        setScrolled(window.scrollY > NAVBAR_HEIGHT)
+        return
+      }
+      // 透明背景持续到首页大图最底部，越过图片底部边界后才切换为实心背景。
+      const heroBottom = hero.offsetTop + hero.offsetHeight
+      setScrolled(window.scrollY >= heroBottom - NAVBAR_HEIGHT)
+    }
+    updateScrolled()
+    window.addEventListener('scroll', updateScrolled, { passive: true })
+    window.addEventListener('resize', updateScrolled)
+    return () => {
+      window.removeEventListener('scroll', updateScrolled)
+      window.removeEventListener('resize', updateScrolled)
+    }
+  }, [location.pathname])
 
   useEffect(() => {
     setMobileOpen(false)
@@ -68,28 +86,43 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-1">
-            {NAV_ITEMS.map(({ path, label }) => (
-              path.startsWith('http') ? (
-                <a
-                  key={path}
-                  href={path}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`relative px-3 py-2 text-sm font-medium transition-colors ${
-                    transparent
-                      ? 'text-white/80 hover:text-white'
-                      : 'text-muted hover:text-fg'
-                  }`}
-                >
-                  {label}
-                </a>
-              ) : (
-                <Link key={path} to={path} className={linkClass(path)}>
-                  {label}
-                </Link>
-              )
-            ))}
+          <div className="flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-1">
+              {NAV_ITEMS.map(({ path, label }) => (
+                path.startsWith('http') ? (
+                  <a
+                    key={path}
+                    href={path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`relative px-3 py-2 text-sm font-medium transition-colors ${
+                      transparent
+                        ? 'text-white/80 hover:text-white'
+                        : 'text-muted hover:text-fg'
+                    }`}
+                  >
+                    {label}
+                  </a>
+                ) : (
+                  <Link key={path} to={path} className={linkClass(path)}>
+                    {label}
+                  </Link>
+                )
+              ))}
+            </div>
+            <ThemeToggle transparent={transparent} visible={!transparent} />
+            <button
+              type="button"
+              className={`flex h-9 w-9 items-center justify-center rounded-md transition-colors lg:hidden ${
+                transparent
+                  ? 'text-white/80 hover:text-white hover:bg-white/10'
+                  : 'text-muted hover:text-fg hover:bg-surface'
+              }`}
+              onClick={() => setMobileOpen(true)}
+              aria-label="打开菜单"
+            >
+              <List size={22} weight="bold" />
+            </button>
           </div>
         </div>
       </nav>

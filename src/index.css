@@ -3,6 +3,9 @@
 /* Explicitly scan the src tree so utilities are generated in dev mode too. */
 @source "../src/**/*.{ts,tsx,js,jsx}";
 
+/* Class-based dark mode: the .dark class is applied to <html> by the theme logic. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* ysjf.com 设计系统：浅色极简 */
   --yy-bg: #FFFFFF;
@@ -17,6 +20,22 @@
   --yy-accent: #24252C;
   --yy-danger: #FF4B40;
   color-scheme: light;
+}
+
+.dark {
+  /* ysjf.com 设计系统：深色极简 */
+  --yy-bg: #0D0F14;
+  --yy-surface: #171A21;
+  --yy-fg: #E8EAF0;
+  --yy-muted: #9AA1B0;
+  --yy-faint: #5B6472;
+  --yy-border: #262B35;
+  --yy-placeholder: #3A4150;
+  --yy-primary: #E8EAF0;
+  --yy-on-primary: #0D0F14;
+  --yy-accent: #E8EAF0;
+  --yy-danger: #FF6B61;
+  color-scheme: dark;
 }
 
 @theme inline {
