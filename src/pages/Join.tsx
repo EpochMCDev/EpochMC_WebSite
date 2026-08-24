@@ -42,7 +42,7 @@ const SERVER_INFO = [
     icon: Gear,
     label: '核心框架',
     value: 'EpochCore (Leaf)',
-    link: 'https://github.com/EpochMCDev/EpochCore_26.2'  // 👈 加这行，想跳哪写哪
+    link: 'https://github.com/EpochMCDev/EpochCore_26.2',
   },
   { icon: User, label: 'QQ 群号', value: '1043737743', copyable: true },
 ]
@@ -118,13 +118,14 @@ export default function Join() {
                       }`}
                       onClick={() => {
                         if (copyable) copyToClipboard(value, label)
-                        if (link) window.location.href = link
+                        if (link) window.open(link, '_blank')  // 👈 就改这一行
                       }}
                       title={copyable ? `点击复制${label}` : link ? '点击访问' : undefined}
                   >
                     <div className="flex items-center justify-between">
                       <Icon size={20} weight="bold" className="text-fg" />
                       {copyable && <Copy size={14} weight="bold" className="text-faint" />}
+                      {link && <span className="text-muted text-sm">||</span>}
                     </div>
                     <div className="mt-4 text-xs text-muted font-medium">{label}</div>
                     <div className="mt-1 text-base font-semibold text-fg">{value}</div>
