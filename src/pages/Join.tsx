@@ -9,6 +9,7 @@ import {
   Cpu,
   DeviceMobileCamera,
   Copy,
+  ArrowSquareOut,
 } from '@phosphor-icons/react'
 import ScrollReveal from '../components/ScrollReveal'
 import SectionHead from '../components/SectionHead'
@@ -108,28 +109,20 @@ export default function Join() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <ScrollReveal>
             <div className="grid sm:grid-cols-3 gap-5">
-              {SERVER_INFO.map(({ icon: Icon, label, value, copyable, link }) => (
-                  <div
-                      key={label}
-                      className={`rounded-[10px] bg-bg border border-border p-6 ${
-                          copyable || link
-                              ? 'cursor-pointer transition-shadow hover:shadow-[0_0_20px_0_rgba(0,0,0,0.07)] active:scale-[0.98]'
-                              : 'transition-shadow hover:shadow-[0_0_20px_0_rgba(0,0,0,0.07)]'
-                      }`}
-                      onClick={() => {
-                        if (copyable) copyToClipboard(value, label)
-                        if (link) window.open(link, '_blank')  // 👈 就改这一行
-                      }}
-                      title={copyable ? `点击复制${label}` : link ? '点击访问' : undefined}
-                  >
-                    <div className="flex items-center justify-between">
-                      <Icon size={20} weight="bold" className="text-fg" />
-                      {copyable && <Copy size={14} weight="bold" className="text-faint" />}
-                      {link && <span className="text-muted text-sm">||</span>}
-                    </div>
-                    <div className="mt-4 text-xs text-muted font-medium">{label}</div>
-                    <div className="mt-1 text-base font-semibold text-fg">{value}</div>
+              {STEPS.map(({ step, icon: Icon, title, desc }) => (
+                <div
+                  key={step}
+                  className="rounded-[14px] bg-surface border border-border p-7 sm:p-8 transition-shadow hover:shadow-[0_0_20px_0_rgba(0,0,0,0.07)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center justify-center w-12 h-12 rounded-full bg-bg text-fg">
+                      <Icon size={22} weight="bold" />
+                    </span>
+                    <span className="text-3xl font-bold text-faint/60 tracking-tight">{step}</span>
                   </div>
+                  <h2 className="mt-6 text-lg font-semibold text-fg">{title}</h2>
+                  <p className="mt-2 text-sm text-muted leading-relaxed">{desc}</p>
+                </div>
               ))}
             </div>
           </ScrollReveal>
@@ -158,20 +151,24 @@ export default function Join() {
           </ScrollReveal>
           <ScrollReveal delay={80}>
             <div className="mt-8 grid sm:grid-cols-3 gap-5">
-              {SERVER_INFO.map(({ icon: Icon, label, value, copyable }) => (
+              {SERVER_INFO.map(({ icon: Icon, label, value, copyable, link }) => (
                 <div
                   key={label}
                   className={`rounded-[10px] bg-bg border border-border p-6 ${
-                    copyable
+                    copyable || link
                       ? 'cursor-pointer transition-shadow hover:shadow-[0_0_20px_0_rgba(0,0,0,0.07)] active:scale-[0.98]'
                       : 'transition-shadow hover:shadow-[0_0_20px_0_rgba(0,0,0,0.07)]'
                   }`}
-                  onClick={() => copyable && copyToClipboard(value, label)}
-                  title={copyable ? `点击复制${label}` : undefined}
+                  onClick={() => {
+                    if (copyable) copyToClipboard(value, label)
+                    if (link) window.open(link, '_blank')
+                  }}
+                  title={copyable ? `点击复制${label}` : link ? '点击访问' : undefined}
                 >
                   <div className="flex items-center justify-between">
                     <Icon size={20} weight="bold" className="text-fg" />
                     {copyable && <Copy size={14} weight="bold" className="text-faint" />}
+                    {link && <ArrowSquareOut size={14} weight="bold" className="text-faint" />}
                   </div>
                   <div className="mt-4 text-xs text-muted font-medium">{label}</div>
                   <div className="mt-1 text-base font-semibold text-fg">{value}</div>
