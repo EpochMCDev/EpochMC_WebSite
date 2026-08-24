@@ -25,7 +25,7 @@ const QQ_GROUP_URL = 'https://qm.qq.com/q/M2NJEm15uc'
 
 // Server hosts for the live active-player count.
 // Fallback order: a is the default, b is used only when a is unreachable.
-const SERVER_HOSTS = ['a.mc.epochmc.cn', 'b.mc.epochmc.cn']
+const SERVER_HOSTS = ['test.epochearth.cn', 'test.epochmc.cn']
 
 // Public Minecraft server-status API that pings the hosts and returns JSON.
 // Once the domains resolve, the count becomes live automatically.
