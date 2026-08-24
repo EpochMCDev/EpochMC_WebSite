@@ -28,10 +28,10 @@ dist-ssr
 /src/
 /LICENSE
 /.env.production
-/public/
 /index.html
 /package-lock.json
 /package.json
 /README.md
 /tsconfig.json
 /vite.config.js
+/public/
