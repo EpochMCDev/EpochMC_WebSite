@@ -1,66 +1,62 @@
-name: Build
+name: Build and Deploy
 
 on:
   push:
     branches:
-      - main  
-  workflow_dispatch:
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  
-          cache: 'npm'      
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: npm i 
+        run: npm ci
 
       - name: Build project
         run: npm run build
 
-      - name: Upload build artifacts
+      - name: Upload build artifacts to Actions
         uses: actions/upload-artifact@v4
         with:
-          name: build-output
-          path: dist/
+          name: EpochMC_Website
+          path: dist
+          retention-days: 30
 
-      - name: Generate version
-        id: version
-        run: |
-          DATE=$(date +'%Y.%m.%d')
-          COMMIT_COUNT=$(git rev-list --count HEAD)
-          VERSION="${DATE}.${COMMIT_COUNT}"
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-
-      - name: Package build artifacts
+      - name: Create Release Archive
         run: |
           cd dist
-          zip -r ../build-v${{ env.VERSION }}.zip .
+          zip -r ../EpochMC_Website.zip .
           cd ..
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ env.VERSION }}
-          name: Release v${{ env.VERSION }}
-          body: ${{ github.event.head_commit.message }}
+          files: EpochMC_Website.zip
+          tag_name: build-${{ github.run_number }}
+          name: Build #${{ github.run_number }}
           draft: false
           prerelease: false
-          files: |
-            build-v${{ env.VERSION }}.zip
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to Cloud Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: '-rlgoDzvc -i --delete'
+          SOURCE: 'dist/'
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_USER: ${{ secrets.SERVER_USER }}
+          TARGET: ${{ secrets.SERVER_PATH }}
+          EXCLUDE: '.env, .git/'
