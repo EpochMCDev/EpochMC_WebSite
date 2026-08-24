@@ -141,6 +141,8 @@ export default function Home() {
     sliderRef.current?.scrollBy({ left: dir * 360, behavior: 'smooth' })
   }
 
+  const nextSlide = (slide + 1) % HERO_BACKGROUNDS.length
+
   return (
     <>
       {/* ==================== Fullscreen banner ==================== */}
@@ -154,7 +156,11 @@ export default function Home() {
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] ${
               i === slide ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(${bg})` }}
+            style={
+              i === slide || i === nextSlide
+                ? { backgroundImage: `url(${bg})` }
+                : undefined
+            }
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
@@ -206,7 +212,14 @@ export default function Home() {
             <button
               key={i}
               aria-label={`slide-${i + 1}`}
-              onClick={() => setSlide(i)}
+              onClick={() => {
+                if (i !== slide) {
+                  // 提前开始加载目标图片，避免切换时闪白
+                  const img = new Image()
+                  img.src = HERO_BACKGROUNDS[i]
+                }
+                setSlide(i)
+              }}
               className={`h-[3px] transition-all duration-300 ${
                 i === slide ? 'w-8 bg-white' : 'w-4 bg-white/40 hover:bg-white/70'
               }`}
