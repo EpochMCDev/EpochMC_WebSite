@@ -33,9 +33,9 @@ const mcStatusUrl = (host: string) => `https://api.mcsrvstat.us/3/${encodeURICom
 
 // Placeholder community stats; replace with real numbers.
 const STATS = [
-  { value: '测试服', label: '国家数量' },
+  { value: '暂不展示', label: '国家数量' },
   { value: null, label: '在线玩家', live: true },
-  { value: '900+', label: '社区成员' },
+  { value: '1000+', label: '社区成员' },
 ]
 
 async function fetchServerCount(host: string): Promise<number | null> {
