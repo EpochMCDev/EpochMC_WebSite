@@ -37,8 +37,13 @@ const STEPS = [
 ]
 
 const SERVER_INFO = [
-  { icon: Desktop, label: '游戏版本', value: '1.20.1' },
-  { icon: Gear, label: '核心框架', value: 'DivineMC' },
+  { icon: Desktop, label: '游戏版本', value: '26.2' },
+  {
+    icon: Gear,
+    label: '核心框架',
+    value: 'EpochCore (Leaf)',
+    link: 'https://github.com/EpochMCDev/EpochCore_26.2'  // 👈 加这行，想跳哪写哪
+  },
   { icon: User, label: 'QQ 群号', value: '1043737743', copyable: true },
 ]
 
@@ -93,7 +98,7 @@ export default function Join() {
             加入服务器
           </h1>
           <p className="mt-4 text-sm sm:text-base text-muted leading-relaxed">
-            几步踏上 Epoch MC 的全球战场，成为世界格局的参与者与改写者。
+            几步踏上 EpochMC 的全球战场，成为世界格局的参与者与改写者。
           </p>
         </div>
       </section>
@@ -103,20 +108,27 @@ export default function Join() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <ScrollReveal>
             <div className="grid sm:grid-cols-3 gap-5">
-              {STEPS.map(({ step, icon: Icon, title, desc }) => (
-                <div
-                  key={step}
-                  className="rounded-[14px] bg-surface border border-border p-7 sm:p-8 transition-shadow hover:shadow-[0_0_20px_0_rgba(0,0,0,0.07)]"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="flex items-center justify-center w-12 h-12 rounded-full bg-bg text-fg">
-                      <Icon size={22} weight="bold" />
-                    </span>
-                    <span className="text-3xl font-bold text-faint/60 tracking-tight">{step}</span>
+              {SERVER_INFO.map(({ icon: Icon, label, value, copyable, link }) => (
+                  <div
+                      key={label}
+                      className={`rounded-[10px] bg-bg border border-border p-6 ${
+                          copyable || link
+                              ? 'cursor-pointer transition-shadow hover:shadow-[0_0_20px_0_rgba(0,0,0,0.07)] active:scale-[0.98]'
+                              : 'transition-shadow hover:shadow-[0_0_20px_0_rgba(0,0,0,0.07)]'
+                      }`}
+                      onClick={() => {
+                        if (copyable) copyToClipboard(value, label)
+                        if (link) window.location.href = link
+                      }}
+                      title={copyable ? `点击复制${label}` : link ? '点击访问' : undefined}
+                  >
+                    <div className="flex items-center justify-between">
+                      <Icon size={20} weight="bold" className="text-fg" />
+                      {copyable && <Copy size={14} weight="bold" className="text-faint" />}
+                    </div>
+                    <div className="mt-4 text-xs text-muted font-medium">{label}</div>
+                    <div className="mt-1 text-base font-semibold text-fg">{value}</div>
                   </div>
-                  <h2 className="mt-6 text-lg font-semibold text-fg">{title}</h2>
-                  <p className="mt-2 text-sm text-muted leading-relaxed">{desc}</p>
-                </div>
               ))}
             </div>
           </ScrollReveal>

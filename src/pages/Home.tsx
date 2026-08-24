@@ -14,11 +14,11 @@ import ScrollReveal from '../components/ScrollReveal'
 import SectionHead from '../components/SectionHead'
 
 const HERO_BACKGROUNDS = [
-  '/images/hero/bg1.png',
-  '/images/hero/bg2.png',
-  '/images/hero/bg3.png',
-  '/images/hero/bg4.png',
-  '/images/hero/bg5.png',
+  '/images/hero/bg1.webp',
+  '/images/hero/bg2.webp',
+  '/images/hero/bg3.webp',
+  '/images/hero/bg4.webp',
+  '/images/hero/bg5.webp',
 ]
 
 const QQ_GROUP_URL = 'https://qm.qq.com/q/M2NJEm15uc'
@@ -103,7 +103,7 @@ const UPDATE_ITEMS = [
   },
   {
     title: '加入我们',
-    desc: '三步踏上 Epoch MC 的全球战场，成为世界格局的参与者与改写者。',
+    desc: '三步踏上 EpochMC 的全球战场，成为世界格局的参与者与改写者。',
     tag: '社区',
     to: '/join',
     cover: HERO_BACKGROUNDS[4],
@@ -161,8 +161,8 @@ export default function Home() {
 
         <div className="relative flex-1 flex flex-col items-center justify-center text-center px-4 pt-24 pb-10">
           <img
-            src="/images/logo.png"
-            alt="Epoch MC"
+            src="/images/logo.webp"
+            alt="EpochMC"
             className="w-full max-w-[280px] sm:max-w-[420px] h-auto object-contain drop-shadow-lg"
           />
           <h1 className="mt-6 text-3xl sm:text-5xl font-bold text-white tracking-tight drop-shadow-md">

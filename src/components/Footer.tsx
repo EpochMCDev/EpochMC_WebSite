@@ -22,12 +22,12 @@ export default function Footer() {
           {/* Left: logo + copyright */}
           <div className="flex items-center gap-3.5">
             <img
-              src="/images/logo.png"
-              alt="Epoch MC"
+              src="/images/logo.webp"
+              alt="EpochMC"
               className="h-10 w-auto object-contain"
             />
             <p className="text-sm font-semibold text-fg tracking-tight">
-              © 2026 Epoch MC
+              © 2026 EpochMC
             </p>
           </div>
 

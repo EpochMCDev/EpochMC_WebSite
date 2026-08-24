@@ -1,6 +1,6 @@
-# Epoch MC 官网
+# EpochMC 官网
 
-Epoch MC（真实地球 · 国战服务器）官方网站，基于 **React 19 + Vite 7 + React Router v7 + TypeScript（TSX）** 构建，UI 采用影视飓风官网（[ysjf.com](https://www.ysjf.com/)）的浅色极简设计语言。
+EpochMC（真实地球 · 国战服务器）官方网站，基于 **React 19 + Vite 7 + React Router v7 + TypeScript（TSX）** 构建，UI 采用影视飓风官网（[ysjf.com](https://www.ysjf.com/)）的浅色极简设计语言。
 
 ## 技术栈
 

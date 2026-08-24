@@ -36,7 +36,7 @@ export default function About() {
             关于我们
           </h1>
           <p className="mt-4 text-sm sm:text-base text-muted leading-relaxed">
-            Epoch MC 是一款以真实地球为地图的国战服务器。在这里，疆域、战争与外交，都由玩家亲手书写。
+            EpochMC 是一款以真实地球为地图的国战服务器。在这里，疆域、战争与外交，都由玩家亲手书写。
           </p>
         </div>
       </section>
@@ -49,7 +49,7 @@ export default function About() {
               <div>
                 <SectionHead title="我们是谁" subtitle="ABOUT" />
                 <p className="mt-6 text-sm sm:text-base text-muted leading-relaxed">
-                  Epoch MC 由一群热爱国战与外交博弈的玩家共同运营，以 1:50 真实地球地图为舞台，见证一个个国家的兴起与沉浮。
+                  EpochMC 由一群热爱国战与外交博弈的玩家共同运营，以 1:50 真实地球地图为舞台，见证一个个国家的兴起与沉浮。
                 </p>
                 <p className="mt-4 text-sm sm:text-base text-muted leading-relaxed">
                   我们注重规则与公平，完善的领土、战争与经济机制，让每一场博弈都有章可循。
@@ -74,7 +74,7 @@ export default function About() {
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div className="order-2 lg:order-1 rounded-[14px] overflow-hidden border border-border bg-surface">
                 <img
-                  src="/images/hero/bg1.png"
+                  src="/images/hero/bg1.webp"
                   alt="我们的世界"
                   className="w-full h-64 sm:h-80 object-cover"
                 />

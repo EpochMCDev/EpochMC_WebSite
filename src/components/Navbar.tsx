@@ -7,9 +7,9 @@ const NAV_ITEMS = [
   { path: '/', label: '首页' },
   { path: '/about', label: '关于' },
   { path: '/join', label: '加入' },
-  { path: '/satellite', label: '卫星地图' },
-  { path: '/stock', label: '国家股市' },
-  { path: 'https://wiki.epochmc.cn/', label: '维基百科' },
+  // { path: '/satellite', label: '卫星地图' },
+  // { path: '/stock', label: '国家股市' },
+  // { path: 'https://wiki.epochmc.cn/', label: '维基百科' },
 ]
 
 const QQ_GROUP_URL = 'https://qm.qq.com/q/M2NJEm15uc'
@@ -73,8 +73,8 @@ export default function Navbar() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <img
-              src="/images/logo.png"
-              alt="Epoch MC"
+              src="/images/logo.webp"
+              alt="EpochMC"
               className="h-8 w-auto object-contain"
             />
             <span
@@ -82,7 +82,7 @@ export default function Navbar() {
                 transparent ? 'text-white' : 'text-fg'
               }`}
             >
-              Epoch MC
+              EpochMC
             </span>
           </Link>
 
@@ -145,7 +145,7 @@ export default function Navbar() {
           }`}
         >
           <div className="flex items-center justify-between">
-            <span className="font-semibold text-fg">Epoch MC</span>
+            <span className="font-semibold text-fg">EpochMC</span>
             <button
               className="p-2 text-fg"
               onClick={() => setMobileOpen(false)}
