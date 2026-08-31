@@ -132,19 +132,11 @@ export default defineConfig(async ({ mode, command }) => {
             'react-vendor': ['react', 'react-dom', 'react-router-dom'],
             'phosphor-icons': ['@phosphor-icons/react'],
           },
-          chunkFileNames: 'assets/[name]-[hash].js',
-          entryFileNames: 'assets/[name]-[hash].js',
+          entryFileNames: 'js/[name]-[hash].js',
+          chunkFileNames: 'js/[name]-[hash].js',
           assetFileNames: (assetInfo) => {
-            const info = assetInfo.name.split('.')
-            const ext = info[info.length - 1]
-            if (/\.(png|jpe?g|gif|svg|webp|ico|avif)$/.test(assetInfo.name)) {
-              return 'assets/[name]-[hash].[ext]'
-            }
             if (/\.(css)$/.test(assetInfo.name)) {
-              return 'assets/[name]-[hash].[ext]'
-            }
-            if (/\.(woff2?|eot|ttf|otf)$/.test(assetInfo.name)) {
-              return 'assets/[name]-[hash].[ext]'
+              return 'css/[name]-[hash].[ext]'
             }
             return 'assets/[name]-[hash].[ext]'
           },
