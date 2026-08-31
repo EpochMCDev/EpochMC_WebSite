@@ -9,7 +9,8 @@ const NAV_ITEMS = [
   { path: '/join', label: '加入' },
   // { path: '/satellite', label: '卫星地图' },
   // { path: '/stock', label: '国家股市' },
-  // { path: 'https://wiki.epochmc.cn/', label: '维基百科' },
+  // { path: 'https://wiki.epochmc.cn/', label: 'WIKI' },
+  { path: 'https://kook.vip/rImL25', label: 'KOOK' },
 ]
 
 const QQ_GROUP_URL = 'https://qm.qq.com/q/M2NJEm15uc'

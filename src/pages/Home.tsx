@@ -9,6 +9,7 @@ import {
   CurrencyCircleDollar,
   Users,
   ArrowDown,
+  DiscordLogo,
 } from '@phosphor-icons/react'
 import ScrollReveal from '../components/ScrollReveal'
 import SectionHead from '../components/SectionHead'
@@ -21,6 +22,7 @@ const HERO_BACKGROUNDS = [
   '/images/hero/bg5.webp',
 ]
 
+const KOOK_URL = 'https://kook.vip/rImL25'
 const QQ_GROUP_URL = 'https://qm.qq.com/q/M2NJEm15uc'
 
 // Server hosts for the live active-player count.
@@ -418,6 +420,15 @@ export default function Home() {
                 >
                   <ChatTeardropText size={16} weight="bold" />
                   加入 QQ 群聊
+                </a>
+                <a
+                    href={KOOK_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn"
+                >
+                  <DiscordLogo size={16} weight="bold" />
+                  加入 KOOK 频道
                 </a>
               </div>
             </div>
