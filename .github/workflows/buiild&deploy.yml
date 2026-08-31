@@ -48,18 +48,6 @@ jobs:
           COMMITS=$(git rev-list --count HEAD)
           echo "date=${DATE}.${COMMITS}" >> $GITHUB_OUTPUT
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: EpochMC_Website.zip
-          tag_name: ${{ steps.date.outputs.date }}
-          name: ${{ steps.date.outputs.date }}
-          draft: false
-          prerelease: false
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Deploy to Cloud Server
         uses: appleboy/scp-action@v0.1.7
         with:
